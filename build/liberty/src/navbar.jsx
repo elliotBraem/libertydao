@@ -1,4 +1,5 @@
 const { tabs, tab, signIn } = props;
+const accountId = context.accountId || null;
 
 State.init({
   open: false,
@@ -106,13 +107,13 @@ return (
             </Link>
           </li>
         ))}
-        {!context.accountId && (
+        {!accountId && (
           <li className="nav-item d-md-none">
             <LoginButton signIn={signIn} />
           </li>
         )}
       </ul>
-      {!context.accountId && (
+      {!accountId && (
         <div className="nav-item d-none d-md-block ml-md-auto col">
           <LoginButton signIn={signIn} />
         </div>
