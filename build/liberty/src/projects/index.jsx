@@ -58,6 +58,11 @@ const Description = styled.p`
   text-align: center;
 `;
 
+const PlusSign = styled.div`
+  // background-color: green;
+  font-size: 36px;
+`;
+
 function Card({ title, description }) {
   return (
     <CardContainer>
@@ -99,14 +104,35 @@ const data = [
   },
 ];
 
+const TopBanner = styled.div`
+  padding: 40px 20px 0px 20px;
+  text-align: center;
+  font-size: 16px;
+`;
+
 return (
   <Container>
-    <Header>Active Projects</Header>
+    <Header>Improving Our City</Header>
+    <TopBanner>
+      <p>
+        Liberty doesn't come all at once; it comes one step at a time. Each card
+        below represents another step in the right direction.
+      </p>
+      <p>
+        Explore the catalog! Connect with those that you’re interested in. Share
+        those you’d like to see supported. Add the ones that belong here.
+      </p>
+    </TopBanner>
     <Grid>
       {data.map((it) => (
         <Card key={index} {...it} />
       ))}
     </Grid>
+    <a href="mailto:newlibertysystems@gmail.com?subject=Suggested Addition to Projects Catalogue&body=[Title]  [Description]   [Additional Notes]">
+      <PlusSign>
+        <i className="bi bi-plus" />
+      </PlusSign>
+    </a>
   </Container>
 );
 

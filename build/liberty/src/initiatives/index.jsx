@@ -1,62 +1,247 @@
-const { Feed } = VM.require("efiz.near/widget/Module.Feed");
-Feed = Feed || (() => <></>);
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+const Wrapper = styled.div`
+  height: 100vh;
   margin-top: var(--header-height);
   background-color: var(--light-color);
+`;
 
-  @media (max-width: 768px) {
-    flex-direction: column;
+const Container = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: var(--light-color);
+  padding-bottom: 80px;
+  padding: 40px;
+  border-radius: 8px;
+`;
+
+const Title = styled.h1`
+  color: #1b856b;
+`;
+
+const Subtitle = styled.h3`
+  margin-top: 10px;
+`;
+
+const Subtext = styled.h3`
+  margin-top: 10px;
+  font-size: 16px;
+`;
+
+const Header = styled.div`
+  font-size: 18px;
+  margin-bottom: 10px;
+  text-align: center;
+`;
+
+const FormLabel = styled.label`
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+`;
+
+const TextInput = styled.textarea`
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+`;
+
+const SubmitButton = styled.button`
+  background-color: var(--dark-color);
+  margin-top: 20px;
+  padding: 10px 20px;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e5e5e5;
+    color: #111;
   }
 `;
 
+State.init({
+  description: "",
+  forWho: "",
+  byWho: "",
+  status: "",
+  contact: "",
+  needs: "",
+});
+
+function handleSubmit() {
+  Social.set(
+    {
+      thing: {
+        libertydaoInitative: {
+          "": JSON.stringify(state),
+        },
+      },
+    },
+    {
+      onCommit: () => {
+        State.update({
+          description: "",
+          forWho: "",
+          byWho: "",
+          status: "",
+          contact: "",
+          needs: "",
+        });
+      },
+      onCancel: () => {
+        State.update({
+          description: "",
+          forWho: "",
+          byWho: "",
+          status: "",
+          contact: "",
+          needs: "",
+        });
+      },
+    }
+  );
+}
+
 return (
-  <Container>
-    <div style={{ maxWidth: "800px" }}>
-      <Widget
-        src="libertydao.near/widget/initiatives.compose"
-        props={{
-          index: {
-            thing: JSON.stringify([
-              {
-                key: "libertydaoinitiatives",
-                value: {
-                  type: "md",
-                },
-              },
-            ]),
-          },
-        }}
-      />
-      <Feed
-        index={[
-          {
-            action: "thing",
-            key: "libertydaoinitiatives",
-            options: {
-              limit: 10,
-              order: "desc",
-              accountId: props.accounts,
-            },
-            cacheOptions: {
-              ignoreCache: true,
-            },
-          },
-        ]}
-        Item={(p) => (
-          <Widget
-            loading={<div className="w-100" style={{ height: "200px" }} />}
-            src="libertydao.near/widget/initiatives.post"
-            props={{ accountId: p.accountId, blockHeight: p.blockHeight }}
-          />
-        )}
-      />
+  <Wrapper className="row">
+    <div className="col">
+      <Container>
+        <Header>
+          <Title>Hello! And thanks for helping us to Activate Liberty!</Title>
+          <Subtitle>
+            As with any other accomplishment, this doesn’t come without
+            consensus, And that doesn’t come without input. So we are enormously
+            grateful for Every suggestion and addition to our network and data
+            citizens projects.
+          </Subtitle>
+          <Subtext>But this is only the beginning!</Subtext>
+          <Subtext>
+            We need to hear the voices of the city to know what projects are
+            needed next! Tell us below what needs or initiatives you see, and
+            what we can make possible.
+          </Subtext>
+          <Subtext>Fill in whatever blanks you can, And Thank you!</Subtext>
+        </Header>
+
+        <FormLabel>Description:</FormLabel>
+        <TextInput
+          type="text"
+          value={state.description}
+          onChange={(e) => State.update({ description: e.target.value })}
+        />
+
+        <FormLabel>For Who:</FormLabel>
+        <TextInput
+          type="text"
+          value={state.forWho}
+          onChange={(e) => State.update({ forWho: e.target.value })}
+        />
+
+        <FormLabel>By Who:</FormLabel>
+        <TextInput
+          type="text"
+          value={state.byWho}
+          onChange={(e) => State.update({ byWho: e.target.value })}
+        />
+
+        <FormLabel>Status:</FormLabel>
+        <TextInput
+          type="text"
+          value={state.status}
+          onChange={(e) => State.update({ status: e.target.value })}
+        />
+
+        <FormLabel>Needs:</FormLabel>
+        <TextInput
+          type="text"
+          value={state.needs}
+          onChange={(e) => State.update({ needs: e.target.value })}
+        />
+
+        <FormLabel>Contact:</FormLabel>
+        <TextInput
+          type="text"
+          value={state.contact}
+          onChange={(e) => State.update({ contact: e.target.value })}
+        />
+
+        <SubmitButton onClick={handleSubmit}>Submit</SubmitButton>
+        <Subtext>
+          If you are not logged in, send us a screenshot of the form{" "}
+          <a href="mailto:newlibertysystems@gmail.com?subject=Suggested Addition to Projects Catalogue&body=[Title]  [Description]   [Additional Notes]">
+            here.
+          </a>
+        </Subtext>
+      </Container>
     </div>
-  </Container>
+  </Wrapper>
 );
+
+// const { Feed } = VM.require("efiz.near/widget/Module.Feed");
+// Feed = Feed || (() => <></>);
+
+// const Container = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   height: 100%;
+//   margin-top: var(--header-height);
+//   background-color: var(--light-color);
+
+//   @media (max-width: 768px) {
+//     flex-direction: column;
+//   }
+// `;
+
+// return (
+//   <Container>
+//     <div style={{ maxWidth: "800px" }}>
+//       <Widget
+//         src="libertydao.near/widget/initiatives.compose"
+//         props={{
+//           index: {
+//             thing: JSON.stringify([
+//               {
+//                 key: "libertydaoinitiatives",
+//                 value: {
+//                   type: "md",
+//                 },
+//               },
+//             ]),
+//           },
+//         }}
+//       />
+//       <Feed
+//         index={[
+//           {
+//             action: "thing",
+//             key: "libertydaoinitiatives",
+//             options: {
+//               limit: 10,
+//               order: "desc",
+//               accountId: props.accounts,
+//             },
+//             cacheOptions: {
+//               ignoreCache: true,
+//             },
+//           },
+//         ]}
+//         Item={(p) => (
+//           <Widget
+//             loading={<div className="w-100" style={{ height: "200px" }} />}
+//             src="libertydao.near/widget/initiatives.post"
+//             props={{ accountId: p.accountId, blockHeight: p.blockHeight }}
+//           />
+//         )}
+//       />
+//     </div>
+//   </Container>
+// );
 
 // const Column = styled.div`
 //   flex: 1;
@@ -256,13 +441,13 @@ return (
 //   <Container>
 //     <Center>
 //       {state.groupId && state.creatorId ? (
-        // <Widget
-        //   src={"libertydao.near/widget/initiatives.page"}
-        //   props={{
-        //     creatorId: state.creatorId,
-        //     groupId: state.groupId,
-        //   }}
-        // />
+// <Widget
+//   src={"libertydao.near/widget/initiatives.page"}
+//   props={{
+//     creatorId: state.creatorId,
+//     groupId: state.groupId,
+//   }}
+// />
 //       ) : (
 //         <CardWrapper>
 //           <Feed

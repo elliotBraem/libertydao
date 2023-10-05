@@ -126,10 +126,9 @@ return (
         </Text>
         <Ignition
           type="button"
-          href="https://shard.dog/ignitethefuture"
-          target="_blank"
+          href="https://www.libertydao.online/libertydao.near/widget/home?tab=boroughs"
         >
-          IGNITE THE FUTURE
+          MARK YOUR SPARK
         </Ignition>
       </Headline>
     </Body>

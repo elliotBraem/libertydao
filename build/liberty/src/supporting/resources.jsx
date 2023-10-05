@@ -86,7 +86,7 @@ const Grid = styled.div`
 
 const TopBanner = styled.div`
   background-color: var(--secondary-color);
-  padding: 20px;
+  padding: 40px;
   text-align: center;
   font-size: 16px;
 `;

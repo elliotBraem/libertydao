@@ -164,16 +164,18 @@ function LocationIcon() {
 return (
   <Container>
     {/* Absolute Positioning */}
-    <Profile>
-      <Button
-        onClick={() => {
-          State.update({ showForm: !state.showForm });
-        }}
-      >
-        {`What's your Borough?`}
-        <DownIcon />
-      </Button>
-    </Profile>
+    {accountId && (
+      <Profile>
+        <Button
+          onClick={() => {
+            State.update({ showForm: !state.showForm });
+          }}
+        >
+          {`What's your Spark?`}
+          <DownIcon />
+        </Button>
+      </Profile>
+    )}
     {accountId && state.showForm && (
       <Widget
         src={"libertydao.near/widget/boroughs.form"}
@@ -209,10 +211,10 @@ return (
             onClick={
               state.edit
                 ? () => handleSave()
-                : () => State.update({ edit: !state.edit, showForm: true })
+                : () => State.update({ edit: !state.edit })
             }
           >
-            {`${!state.edit ? "Mark your Borough!" : "Save"}`}
+            {`${!state.edit ? "Mark your Spark!" : "Save"}`}
             <LocationIcon />
           </Button>
           {state.edit && (

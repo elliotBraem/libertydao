@@ -133,16 +133,16 @@ State.init({
   answers: data.answers || {},
 });
 
-function shuffleQuestion() {
-  State.update({ currentQuestionIndex: getRandomIndex() });
-}
+// function shuffleQuestion() {
+//   State.update({ currentQuestionIndex: getRandomIndex() });
+// }
 
 const handleAnswerChange = (value) => {
-  const currentQuestion = questions[state.currentQuestionIndex];
+  // const currentQuestion = questions[state.currentQuestionIndex];
   State.update({
     answers: {
-      ...state.answers,
-      [currentQuestion.key]: value,
+      // ...state.answers,
+      ["what-should-people-know"]: value,
     },
   });
 };
@@ -150,7 +150,7 @@ const handleAnswerChange = (value) => {
 return (
   <ModalOverlay>
     <ModalContent>
-      <ModalTitle>What's your Borough?</ModalTitle>
+      <ModalTitle>What's your Spark?</ModalTitle>
       <div>
         <Label>Name it!</Label>
         <Input
@@ -173,16 +173,18 @@ return (
         <Label>
           <FlexContainer>
             <QuestionText>
-              {questions[state.currentQuestionIndex].value}
+              What should people know about it?
+              {/* {questions[state.currentQuestionIndex].value} */}
             </QuestionText>
-            <ShuffleIcon onClick={shuffleQuestion}>
+            {/* <ShuffleIcon onClick={shuffleQuestion}>
               <i className="bi bi-shuffle" />
-            </ShuffleIcon>
+            </ShuffleIcon> */}
           </FlexContainer>
         </Label>
         <Textarea
           onChange={(e) => handleAnswerChange(e.target.value)}
-          value={state.answers[questions[state.currentQuestionIndex].key] || ""}
+          value={state.answers["what-should-people-know"] || ""}
+          // value={state.answers[questions[state.currentQuestionIndex].key] || ""}
         ></Textarea>
       </div>
       <div>
