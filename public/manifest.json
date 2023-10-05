@@ -1,0 +1,14 @@
+{
+  "short_name": "liberty",
+  "name": "Liberty DAO",
+  "icons": [
+    {
+      "src": "/icon_192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "display": "standalone",
+  "theme_color": "#333333",
+  "background_color": "#ffffff"
+}
